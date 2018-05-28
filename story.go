@@ -5,6 +5,25 @@ import (
 	"io"
 )
 
+var defaultHandlerTmpl = `
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Choose Your Own Adventure</html>
+  </head>
+  <body>
+    <h1>{{.Title}}</h1>
+    {{range .Paragraphs}}
+      <p>{{.}}</p>
+    {{end}}
+    <ul>
+    {{range .Options}}
+      <li><a href="/{{.Chapter}}">{{.Text}}</a></li>
+    </ul>
+  </body>
+</html>`
+
 func JsonStory(r io.Reader) (Story, error) {
 	d := json.NewDecoder(r)
 	var story Story
