@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/pgrzesik/cyoa"
+	"log"
 	"net/http"
 	"os"
 )
@@ -26,5 +27,5 @@ func main() {
 
 	h := cyoa.NewHandler(story)
 	fmt.Printf("Starting the server at: %d\n", *port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), h))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", *port), h))
 }
